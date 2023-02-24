@@ -47,7 +47,6 @@ namespace Proje_Sql_DB
         {
             Listele();
         }
-
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             txt_id.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
@@ -59,47 +58,49 @@ namespace Proje_Sql_DB
 
         private void bn_kaydet_Click(object sender, EventArgs e)
         {
-            //baglanti.Open();
-            //SqlCommand komut = new SqlCommand("Insert INTO TBLMUSTERI (MUSTERIAD,MUSTERISOYAD,MUSTERISEHIR,MUSTERIBAKIYE) values(@p1,@p2,@p3,@p4)",baglanti);
-
-            //komut.Parameters.AddWithValue("@p1", txt_ad.Text);
-            //komut.Parameters.AddWithValue("@p2", txt_soyad.Text);
-            //komut.Parameters.AddWithValue("@p3", cbx_sehir.Text);
-            //komut.Parameters.AddWithValue("@p4", decimal.Parse(txt_bakiye.Text)); //decimal veri tipine çevirdik(Çünkü bakiye decimal veri tipinde
-            //komut.ExecuteNonQuery();    
-            //baglanti.Close();
-            //MessageBox.Show("Müşteri sisteme kaydedildi");
-            //Listele();
-
+          baglanti.Open();
+          SqlCommand komut = new SqlCommand("Insert INTO TBLMUSTERI (MUSTERIAD,MUSTERISOYAD,MUSTERISEHIR,MUSTERIBAKIYE) values (@x2,@x3,@x4,@x5)", baglanti);
+            
+            komut.Parameters.AddWithValue("@x2",txt_ad.Text);
+            komut.Parameters.AddWithValue("@x3",txt_soyad.Text);
+            komut.Parameters.AddWithValue("@x4", cbx_sehir.Text);
+            komut.Parameters.AddWithValue("@x5",txt_bakiye.Text);
+            komut.ExecuteNonQuery();
+            baglanti.Close();
+            MessageBox.Show("Kayıt Edildi");
+            Listele();
         }
 
         private void btn_sil_Click(object sender, EventArgs e)
-        {   
-            //baglanti.Open();
+        {
+            baglanti.Open();
+            SqlCommand komut = new SqlCommand("Delete from TBLMUSTERI where MUSTERIID=@p1", baglanti);
+            komut.Parameters.AddWithValue("@p1", txt_id.Text);
+            komut.ExecuteNonQuery();
+            Listele();
+            MessageBox.Show("Silme İşlemi Yapıldı");
+            baglanti.Close();
 
-            //SqlCommand komut = new SqlCommand("Delete  From TBLMUSTERI where MUSTERIID=@p1",baglanti);         
-            //komut.Parameters.AddWithValue("@p1",txt_id.Text);
-            //komut.ExecuteNonQuery();
-            //MessageBox.Show("Kayıt Silindi","RECORD HAS BEEN DELETED !",MessageBoxButtons.OK,MessageBoxIcon.Warning);
-            //baglanti.Close();
-            //Listele();
+
+
         }
 
         private void btn_guncelle_Click(object sender, EventArgs e)
         {
-            //baglanti.Open();
+            baglanti.Open();
 
-            //SqlCommand komut = new SqlCommand("Update  TBLMUSTERI SET MUSTERIAD=@p1,MUSTERISOYAD=@p2,MUSTERISEHIR=@p3,MUSTERIBAKIYE=@p4 where MUSTERIID=@p5", baglanti);
-            //komut.Parameters.AddWithValue("@p1", txt_ad.Text);
-            //komut.Parameters.AddWithValue("@p2", txt_soyad.Text);
-            //komut.Parameters.AddWithValue("@p3", cbx_sehir.Text);
-            //komut.Parameters.AddWithValue("@p4", decimal.Parse(txt_bakiye.Text));
-            //komut.Parameters.AddWithValue("@p5", txt_id.Text);
-            //komut.ExecuteNonQuery();
-            //baglanti.Close();
+            SqlCommand komut = new SqlCommand("UPDATE TBLMUSTERI set MUSTERIAD=@p2,MUSTERISOYAD=@p3,MUSTERISEHIR=@p4,MUSTERIBAKIYE=@p5 where MUSTERIID=@p1",baglanti);
+            komut.Parameters.AddWithValue("@p1",txt_id.Text);
+            komut.Parameters.AddWithValue("@p2",txt_ad.Text);
+            komut.Parameters.AddWithValue("@p3",txt_soyad.Text);
+            komut.Parameters.AddWithValue("@p4",cbx_sehir.Text);
+            komut.Parameters.AddWithValue("@p5",txt_bakiye.Text);
+            komut.ExecuteNonQuery();
+            baglanti.Close();
 
-            //MessageBox.Show("güncellendi");
-            //Listele();
+            MessageBox.Show("güncellendi");
+            Listele();
+        
         }
 
         private void btn_ara_Click(object sender, EventArgs e)
