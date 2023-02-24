@@ -31,16 +31,16 @@ namespace Proje_Sql_DB
         {
             Listele();
 
-            //Şimdi de şehirleri çekelim
-            //baglanti.Open();
-            //SqlCommand komut1 = new SqlCommand("Select * FROM TBL_SEHIRLER ",baglanti);
-            //SqlDataReader dr = komut1.ExecuteReader();
-            //while (dr.Read())
-            //{
-            //    cbx_sehir.Items.Add(dr["SEHIRAD"]);
-            //}
-            //baglanti.Close();
-            
+           // Şimdi de şehirleri çekelim
+            baglanti.Open();
+            SqlCommand komut1 = new SqlCommand("Select * FROM TBLSEHIRLER ", baglanti);
+            SqlDataReader dr = komut1.ExecuteReader();
+            while (dr.Read())
+            {   
+                cbx_sehir.Items.Add(dr["SEHIRAD"]);
+            }
+            baglanti.Close();
+
         }
 
         private void btn_listele_Click(object sender, EventArgs e)
@@ -97,7 +97,6 @@ namespace Proje_Sql_DB
             komut.Parameters.AddWithValue("@p5",txt_bakiye.Text);
             komut.ExecuteNonQuery();
             baglanti.Close();
-
             MessageBox.Show("güncellendi");
             Listele();
         
@@ -106,13 +105,22 @@ namespace Proje_Sql_DB
         private void btn_ara_Click(object sender, EventArgs e)
         {
             //SqlCommand komut = new SqlCommand("Select * From TBLMUSTERI where MUSTERIAD=@p1",baglanti); //Normal Arama Komutu 
-           //SqlCommand komut = new SqlCommand("Select * From TBLMUSTERI where MUSTERIAD LIKE @p1+ '%'", baglanti); //İlk Harfte Arayabilmek İçin
+            //SqlCommand komut = new SqlCommand("Select * From TBLMUSTERI where MUSTERIAD LIKE @p1+ '%'", baglanti); //İlk Harfte Arayabilmek İçin
 
-           // komut.Parameters.AddWithValue("@p1",txt_ad.Text);
-           // SqlDataAdapter da=new SqlDataAdapter(komut);
-           // DataTable dt = new DataTable();
-           // da.Fill(dt);    
-           // dataGridView1.DataSource = dt;     
+            // komut.Parameters.AddWithValue("@p1",txt_ad.Text);
+            // SqlDataAdapter da=new SqlDataAdapter(komut);
+            // DataTable dt = new DataTable();
+            // da.Fill(dt);    
+            // dataGridView1.DataSource = dt;
+            // 
+            baglanti.Open();
+            SqlCommand komut = new SqlCommand("Select * from TBLMUSTERI where  MUSTERIAD=@p1",baglanti);
+            komut.Parameters.AddWithValue("@p1",txt_ad.Text);
+            komut.ExecuteNonQuery();
+            Listele();
+            baglanti.Close();
+            MessageBox.Show("Arandı Edildi");
+      
             
            
         }
