@@ -17,14 +17,18 @@ namespace Proje_Sql_DB
         {
             InitializeComponent();
         }
-        SqlConnection baglanti = new SqlConnection(@"Data Source=DESKTOP-16VPERV;Initial Catalog=SatisVeriTabani;Integrated Security=True");    
-        private void btn_listele_Click(object sender, EventArgs e)
+        SqlConnection baglanti = new SqlConnection(@"Data Source=DESKTOP-0CRKMBG;Initial Catalog=SatisVeriVT;Integrated Security=True");
+        public void listele()
         {
             SqlCommand komut = new SqlCommand("Select * From TBLKATEGORI", baglanti);
             SqlDataAdapter da = new SqlDataAdapter(komut);
             DataTable dt = new DataTable();
             da.Fill(dt);
             dataGridView1.DataSource = dt;
+        }
+        private void btn_listele_Click(object sender, EventArgs e)
+        {
+            listele();
         }
 
         private void bn_kaydet_Click(object sender, EventArgs e)
@@ -34,6 +38,7 @@ namespace Proje_Sql_DB
             komut2.Parameters.AddWithValue("p1", txt_kategoriad.Text);
             komut2.ExecuteNonQuery();
             baglanti.Close();
+            listele();
             MessageBox.Show("Kategori Kaydedildi");
 
         }
@@ -44,6 +49,7 @@ namespace Proje_Sql_DB
             txt_kategoriid.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString(); //DataGridView'in satırları içerisinde seçmiş olduğumuz satırın indexine göre
                                                                                             //bu satırda bulunan hücrelerden 0 nolu hücreyi string olarak yazdır
             txt_kategoriad.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+            listele();
 
         }
 
@@ -54,7 +60,8 @@ namespace Proje_Sql_DB
             komut3.Parameters.AddWithValue("@p1", txt_kategoriid.Text);
             komut3.ExecuteNonQuery();
             baglanti.Close();
-            MessageBox.Show("Kategori Silindi");            
+            MessageBox.Show("Kategori Silindi");
+            listele();
         }
 
         private void btn_guncelle_Click(object sender, EventArgs e)
@@ -66,7 +73,7 @@ namespace Proje_Sql_DB
             komut4.ExecuteNonQuery();
             baglanti.Close();
             MessageBox.Show("Kategori Güncellendi");
-
+            listele();
 
         }
     }

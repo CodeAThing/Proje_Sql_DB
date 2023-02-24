@@ -23,7 +23,7 @@ namespace Proje_Sql_DB
             FrmKategoriler fr= new FrmKategoriler();
             fr.Show();
         }
-        SqlConnection baglanti = new SqlConnection(@"Data Source=DESKTOP-16VPERV;Initial Catalog=SatisVeriTabani;Integrated Security=True");
+        SqlConnection baglanti = new SqlConnection(@"Data Source=DESKTOP-16VPERV;Initial Catalog=SatisVeriVT;Integrated Security=True");
         private void btn_musteri_Click(object sender, EventArgs e)
         {
             FrmMusteri fr2=new FrmMusteri();
@@ -73,6 +73,11 @@ namespace Proje_Sql_DB
         private void btn_cikis_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void btn_urunler_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

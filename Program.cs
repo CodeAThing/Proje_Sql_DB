@@ -16,7 +16,7 @@ namespace Proje_Sql_DB
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new FrmMusteri());
         }
     }
 }
