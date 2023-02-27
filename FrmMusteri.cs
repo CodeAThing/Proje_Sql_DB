@@ -11,14 +11,14 @@ using System.Data.SqlClient;
 
 namespace Proje_Sql_DB
 {
-    public partial class FrmMusteri : Form
+    public partial class FrmMusteri : Form  
     {
         public FrmMusteri()
         {
             InitializeComponent();
         }
         SqlConnection baglanti = new SqlConnection(@"Data Source=DESKTOP-0CRKMBG;Initial Catalog=SatisVeriVT;Integrated Security=True");
-
+            
         void Listele()
         {
             SqlCommand komut = new SqlCommand("Select * From TBLMUSTERI", baglanti);
@@ -37,7 +37,7 @@ namespace Proje_Sql_DB
             SqlDataReader dr = komut1.ExecuteReader();
             while (dr.Read())
             {   
-                cbx_sehir.Items.Add(dr["SEHIRAD"]);
+                cbx_sehir.Items.Add(dr["sehir"]+" "+ "("+dr["id"]+")");
             }
             baglanti.Close();
 
@@ -104,27 +104,20 @@ namespace Proje_Sql_DB
 
         private void btn_ara_Click(object sender, EventArgs e)
         {
-            //SqlCommand komut = new SqlCommand("Select * From TBLMUSTERI where MUSTERIAD=@p1",baglanti); //Normal Arama Komutu 
+            SqlCommand komut = new SqlCommand("Select * From TBLMUSTERI where MUSTERIAD=@p1", baglanti); //Normal Arama Komutu 
             //SqlCommand komut = new SqlCommand("Select * From TBLMUSTERI where MUSTERIAD LIKE @p1+ '%'", baglanti); //İlk Harfte Arayabilmek İçin
+            komut.Parameters.AddWithValue("@p1", txt_ad.Text);
+            SqlDataAdapter da = new SqlDataAdapter(komut);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            dataGridView1.DataSource = dt;
 
-            // komut.Parameters.AddWithValue("@p1",txt_ad.Text);
-            // SqlDataAdapter da=new SqlDataAdapter(komut);
-            // DataTable dt = new DataTable();
-            // da.Fill(dt);    
-            // dataGridView1.DataSource = dt;
-            // 
-            baglanti.Open();
-            SqlCommand komut = new SqlCommand("Select * from TBLMUSTERI where  MUSTERIAD=@p1",baglanti);
-            komut.Parameters.AddWithValue("@p1",txt_ad.Text);
-            komut.ExecuteNonQuery();
-            Listele();
-            baglanti.Close();
-            MessageBox.Show("Arandı Edildi");
-      
-            
-           
+
+
+
+
         }
 
-       
+
     }
 }

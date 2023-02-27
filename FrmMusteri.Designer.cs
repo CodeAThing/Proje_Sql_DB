@@ -195,7 +195,7 @@
             this.cbx_sehir.FormattingEnabled = true;
             this.cbx_sehir.Location = new System.Drawing.Point(184, 224);
             this.cbx_sehir.Name = "cbx_sehir";
-            this.cbx_sehir.Size = new System.Drawing.Size(161, 33);
+            this.cbx_sehir.Size = new System.Drawing.Size(161, 28);
             this.cbx_sehir.TabIndex = 36;
             // 
             // txt_bakiye
@@ -263,7 +263,7 @@
             // 
             // FrmMusteri
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(54)))), ((int)(((byte)(80)))));
             this.ClientSize = new System.Drawing.Size(1200, 692);
