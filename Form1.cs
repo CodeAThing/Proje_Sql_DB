@@ -23,7 +23,7 @@ namespace Proje_Sql_DB
             FrmKategoriler fr= new FrmKategoriler();
             fr.Show();
         }
-        SqlConnection baglanti = new SqlConnection(@"Data Source=DESKTOP-16VPERV;Initial Catalog=SatisVeriVT;Integrated Security=True");
+        SqlConnection baglanti = new SqlConnection(@"Data Source=DESKTOP-0CRKMBG;Initial Catalog=SatisVeriVT;Integrated Security=True");
         private void btn_musteri_Click(object sender, EventArgs e)
         {
             FrmMusteri fr2=new FrmMusteri();
@@ -32,13 +32,14 @@ namespace Proje_Sql_DB
 
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
-
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //Ürünlerin Stok Seviyesi(Stok prosedürünü çalıştıralım)
-            SqlCommand komut = new SqlCommand("Execute STOKHESABI", baglanti);
+            //Ürünlerin Durum Seviyesi
+
+            SqlCommand komut = new SqlCommand("Execute TEST4", baglanti);
             SqlDataAdapter da = new SqlDataAdapter(komut);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -46,9 +47,11 @@ namespace Proje_Sql_DB
 
 
 
-            baglanti.Open();
             //Grafiğe Veri Çekme
-            SqlCommand komut2 = new SqlCommand("Select KATEGORIAD,COUNT(*) FROm TBLKATEGORI INNER JOIN TBLURUNLER  ON TBLKATEGORI.KATEGORIID=TBLURUNLER.KATEGORI GROUP bY KATEGORIAD", baglanti);
+
+
+            baglanti.Open();
+            SqlCommand komut2 = new SqlCommand("Select KATEGORIAD,COunt(*) FROM TBLKATEGORI INNER JOIN TBLURUNLER ON TBLURUNLER.KATEGORI=TBLKATEGORI.KATEGORIID GROUP BY KATEGORIAD ", baglanti);
             SqlDataReader dr = komut2.ExecuteReader();
             while (dr.Read())
             {
@@ -56,18 +59,16 @@ namespace Proje_Sql_DB
             }
             baglanti.Close();
 
-
-           
-
-                 baglanti.Open();
-            //Grafiğe Veri Çekme
-            SqlCommand komut3 = new SqlCommand(" SELECT MUSTERISEHIR,Count(*) as ' Şehir Sayısı'  FROM TBLMUSTERI GROUP BY MUSTERISEHIR ", baglanti);
-            SqlDataReader dr2 = komut2.ExecuteReader();
+            baglanti.Open();
+            SqlCommand komut3 = new SqlCommand("Select KATEGORIAD,COunt(*) FROM TBLKATEGORI INNER JOIN TBLURUNLER ON TBLURUNLER.KATEGORI=TBLKATEGORI.KATEGORIID GROUP BY KATEGORIAD ", baglanti);
+            SqlDataReader dr2 = komut3.ExecuteReader();
             while (dr2.Read())
             {
-                chart2.Series["Sehirler"].Points.AddXY(dr2[0], dr2[1]);
+                chart2.Series["MusteriSayisi"].Points.AddXY(dr2[0], dr2[1]);
             }
             baglanti.Close();
+
+
         }
 
         private void btn_cikis_Click(object sender, EventArgs e)

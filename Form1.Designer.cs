@@ -61,9 +61,9 @@
             this.btn_musteri = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label4 = new System.Windows.Forms.Label();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
@@ -118,7 +118,7 @@
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(33, 10);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(170, 29);
+            this.label2.Size = new System.Drawing.Size(134, 24);
             this.label2.TabIndex = 24;
             this.label2.Text = "Sql Veri Kayıt";
             // 
@@ -128,7 +128,7 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(12, 34);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(224, 15);
+            this.label1.Size = new System.Drawing.Size(193, 13);
             this.label1.TabIndex = 23;
             this.label1.Text = "_______________________________";
             // 
@@ -394,20 +394,29 @@
             this.dataGridView1.Size = new System.Drawing.Size(773, 221);
             this.dataGridView1.TabIndex = 2;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label4.Location = new System.Drawing.Point(480, 281);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(184, 20);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Kritik Stoktaki Ürünler";
+            // 
             // chart1
             // 
             chartArea1.Name = "ChartArea1";
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(208, 69);
+            this.chart1.Location = new System.Drawing.Point(214, 43);
             this.chart1.Name = "chart1";
             series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
             series1.Legend = "Legend1";
             series1.Name = "Kategoriler";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(378, 174);
+            this.chart1.Size = new System.Drawing.Size(385, 235);
             this.chart1.TabIndex = 4;
             this.chart1.Text = "chart1";
             // 
@@ -417,26 +426,17 @@
             this.chart2.ChartAreas.Add(chartArea2);
             legend2.Name = "Legend1";
             this.chart2.Legends.Add(legend2);
-            this.chart2.Location = new System.Drawing.Point(582, 69);
+            this.chart2.Location = new System.Drawing.Point(605, 43);
             this.chart2.Name = "chart2";
             series2.ChartArea = "ChartArea1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
             series2.Legend = "Legend1";
-            series2.Name = "Sehirler";
+            series2.Name = "MusteriSayisi";
+            series2.YValuesPerPoint = 3;
             this.chart2.Series.Add(series2);
-            this.chart2.Size = new System.Drawing.Size(399, 174);
+            this.chart2.Size = new System.Drawing.Size(372, 235);
             this.chart2.TabIndex = 5;
             this.chart2.Text = "chart2";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label4.Location = new System.Drawing.Point(480, 281);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(221, 25);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Kritik Stoktaki Ürünler";
             // 
             // Form1
             // 
@@ -502,9 +502,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
-        private System.Windows.Forms.Label label4;
     }
 }
 

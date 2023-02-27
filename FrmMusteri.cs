@@ -94,7 +94,7 @@ namespace Proje_Sql_DB
             komut.Parameters.AddWithValue("@p2",txt_ad.Text);
             komut.Parameters.AddWithValue("@p3",txt_soyad.Text);
             komut.Parameters.AddWithValue("@p4",cbx_sehir.Text);
-            komut.Parameters.AddWithValue("@p5",txt_bakiye.Text);
+            komut.Parameters.AddWithValue("@p5",decimal.Parse(txt_bakiye.Text));
             komut.ExecuteNonQuery();
             baglanti.Close();
             MessageBox.Show("güncellendi");
@@ -105,7 +105,7 @@ namespace Proje_Sql_DB
         private void btn_ara_Click(object sender, EventArgs e)
         {
             SqlCommand komut = new SqlCommand("Select * From TBLMUSTERI where MUSTERIAD=@p1", baglanti); //Normal Arama Komutu 
-            //SqlCommand komut = new SqlCommand("Select * From TBLMUSTERI where MUSTERIAD LIKE @p1+ '%'", baglanti); //İlk Harfte Arayabilmek İçin
+            /*SqlCommand komut = new SqlCommand("Select * From TBLMUSTERI where MUSTERIAD LIKE @p1+ '%'", baglanti);*/ //İlk Harfte Arayabilmek İçin
             komut.Parameters.AddWithValue("@p1", txt_ad.Text);
             SqlDataAdapter da = new SqlDataAdapter(komut);
             DataTable dt = new DataTable();
